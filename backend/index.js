@@ -19,6 +19,7 @@ const corsConfig = {
 credential: true, 
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
+credentials: true // هذا مهم للسماح بإرسال الكوكيز
   }
 app.options("", cors(corsConfig)) 
 app.use(
