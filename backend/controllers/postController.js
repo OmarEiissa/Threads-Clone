@@ -158,17 +158,18 @@ const getFeedPost = async (req, res) => {
 
     // Include the current user's ID in the list of IDs to fetch posts
     const feedPost = await Post.find({
-      postedBy: { $in: [...following] }, // userId لاضافة البوستات الخاصه بي
+      postedBy: { $in: [...following] },
     }).sort({
       createdAt: -1,
     });
 
-    res.status(200).json(feedPost); 
+    res.status(200).json(feedPost);
   } catch (error) {
     res.status(500).json({ error: error.message });
-    console.error("Error fetching feed posts:", error);
+    console.log(error);
   }
 };
+
 
 
 const getUsersPosts = async (req, res) => {
