@@ -61,6 +61,7 @@ export default function LoginCard() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(normalizedInputs),
+credentials: "include",
       });
       const data = await res.json();
       if (data.error) {
