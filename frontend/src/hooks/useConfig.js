@@ -1,0 +1,1 @@
+export const VITE_API_BASE_URL = 'https://threads-clone-server-rho.vercel.app';
