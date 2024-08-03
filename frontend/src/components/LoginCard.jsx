@@ -57,11 +57,11 @@ export default function LoginCard() {
     try {
       const res = await fetch(`${VITE_API_BASE_URL}/api/users/login`, {
         method: "POST",
+credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(normalizedInputs),
-credentials: "include",
       });
       const data = await res.json();
       if (data.error) {
