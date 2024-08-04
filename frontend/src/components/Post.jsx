@@ -25,25 +25,26 @@ function Post({ post, postedBy }) {
 
   // fetch user
   useEffect(() => {
-    const getUser = async () => {
-      try {
-        const res = await fetch(
-          `${VITE_API_BASE_URL}/api/users/profile/${postedBy}`
-        );
-        const data = await res.json();
-        if (data.error) {
-          showToast("Error", data.error, "error");
-          return;
-        }
-        setUser(data);
-      } catch (error) {
-        showToast("Error", error.message, "error");
-        setUser(null);
+  const getUser = async () => {
+    try {
+      const res = await fetch(
+        `${VITE_API_BASE_URL}/api/users/profile/${postedBy}`, {
+          credentials: "include" // تأكد من إرسال الكوكيز
+        });
+      const data = await res.json();
+      if (data.error) {
+        showToast("Error", data.error, "error");
+        return;
       }
-    };
+      setUser(data);
+    } catch (error) {
+      showToast("Error", error.message, "error");
+      setUser(null);
+    }
+  };
 
-    getUser();
-  }, [postedBy, showToast]);
+  getUser();
+}, [postedBy, showToast]);
 
   const handleDeletePost = async (e) => {
     e.preventDefault();
