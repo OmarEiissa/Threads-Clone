@@ -16,49 +16,54 @@ const HomePage = () => {
   const showToast = useShowToast();
 
   useEffect(() => {
-    const getFeedPosts = async () => {
-      setLoading(true);
-      setPosts([]);
-      try {
-        const res = await fetch(`${VITE_API_BASE_URL}/api/posts/feed`, {
+  const getFeedPosts = async () => {
+    setLoading(true);
+    setPosts([]);
+    try {
+      const res = await fetch(`${VITE_API_BASE_URL}/api/posts/feed`, {
+        credentials: "include" // أضف هذا السطر
+      });
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch posts: ${res.statusText}`);
+      }
+
+      const data = await res.json();
+      console.log("Feed posts data:", data);
+
+      if (data.error) {
+        showToast("Error", data.error, "error");
+      }
+
+      if (Array.isArray(data)) {
+        setPosts(data);
+      } else {
+        showToast("Error", "Unexpected data format", "error");
+      }
+
+      if (data.length === 0) {
+        // Fetch users if there are no posts
+        const userRes = await fetch(`${VITE_API_BASE_URL}/api/users`, {
           credentials: "include" // أضف هذا السطر
         });
-      //  if (!res.ok) {
-       //   throw new Error(`Failed to fetch 
-      // } 
-        const data = await res.json();
-        console.log("Feed posts data:", data);
 
-        if (data.error) {
-          showToast("Errorr", data.error, "error");
+        if (!userRes.ok) {
+          throw new Error(`Failed to fetch users: ${userRes.statusText}`);
         }
 
-        if (Array.isArray(data)) {
-          setPosts(data);
-        } else {
-          showToast("Error", "Unexpected data format", "error");
-        }
-
-        if (data.length === 0) {
-          // Fetch users if there are no posts
-          const userRes = await fetch(`${VITE_API_BASE_URL}/api/users`, {
-            credentials: "include" // أضف هذا السطر
-          });
-          if (!userRes.ok) {
-            throw new Error("Failed to fetch users");
-          }
-          const userData = await userRes.json();
-          setUsers(userData);
-        }
-      } catch (error) {
-        showToast("Error", error.message, "error");
-        console.error("Fetch error:", error);
-      } finally {
-        setLoading(false);
+        const userData = await userRes.json();
+        setUsers(userData);
       }
-    };
-    getFeedPosts();
-  }, [showToast, setPosts]);
+    } catch (error) {
+      showToast("Error", error.message, "error");
+      console.error("Fetch error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  getFeedPosts();
+}, [showToast, setPosts]);
+
 
   return (
     <>
