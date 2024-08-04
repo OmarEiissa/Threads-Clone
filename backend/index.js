@@ -18,7 +18,7 @@ import express from "express";
 
 // تكوين CORS
 const corsConfig = {  
-  origin: true, // يمكن استبداله بعناوين محددة حسب الحاجة  
+  origin: "https://threads-clone-server-rho.vercel.app" , // يمكن استبداله بعناوين محددة حسب الحاجة  
   methods: ["GET", "POST", "PUT", "DELETE"],  
   allowedHeaders: ["Content-Type", "Authorization"],  
   credentials: true // هذا مهم للسماح بإرسال الكوكيز  
