@@ -23,10 +23,9 @@ const HomePage = () => {
         const res = await fetch(`${VITE_API_BASE_URL}/api/posts/feed`, {
           credentials: "include" // أضف هذا السطر
         });
-        if (!res.ok) {
-          throw new Error(`Failed to fetch posts: ${res.statusText}`);
-document.write(res.statusText)
-       }
+      //  if (!res.ok) {
+       //   throw new Error(`Failed to fetch 
+      // } 
         const data = await res.json();
         console.log("Feed posts data:", data);
 
