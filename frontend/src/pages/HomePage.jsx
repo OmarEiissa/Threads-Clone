@@ -37,7 +37,6 @@ const HomePage = () => {
           setPosts(data);
         } else {
           showToast("Error", "Unexpected data format", "error");
-document.write(JSON.stringify(data, null, 2)) 
         }
 
         if (data.length === 0) {
