@@ -15,7 +15,7 @@ import express from "express";
  const app = express(); 
   
  const corsConfig = { 
-     origin: "https://threads-clone-one.vercel.app", // يمكن استبداله بعناوين محددة حسب الحاجة 
+     origin: "*", // يمكن استبداله بعناوين محددة حسب الحاجة 
  credential: true,  
      methods: ["GET", "POST", "PUT", "DELETE"], 
      allowedHeaders: ["Content-Type", "Authorization"], 
