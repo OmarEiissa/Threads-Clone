@@ -14,16 +14,18 @@ import express from "express";
  connectDB(); 
  const app = express(); 
   
- const corsConfig = { 
-     origin: "https://threads-clone-one.vercel.app", // يمكن استبداله بعناوين محددة حسب الحاجة 
-     methods: ["GET", "POST", "PUT", "DELETE"], 
-     allowedHeaders: ["Content-Type", "Authorization"], 
-     credentials: true // هذا مهم للسماح بإرسال الكوكيز 
-   } 
- app.options("*", cors(corsConfig))  
- app.use( 
-   cors(corsConfig) 
- ); 
+ import cors from 'cors';
+
+// تكوين CORS
+const corsConfig = {  
+  origin: true, // يمكن استبداله بعناوين محددة حسب الحاجة  
+  methods: ["GET", "POST", "PUT", "DELETE"],  
+  allowedHeaders: ["Content-Type", "Authorization"],  
+  credentials: true // هذا مهم للسماح بإرسال الكوكيز  
+};
+
+app.use(cors(corsConfig));
+app.options("*", cors(corsConfig));
   
  const PORT = process.env.PORT || 5000; 
   
