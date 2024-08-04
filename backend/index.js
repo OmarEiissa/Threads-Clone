@@ -27,6 +27,9 @@ const corsConfig = {
 app.use(cors(corsConfig));
 app.options("*", cors(corsConfig));
   
+app.use(cookieParser());
+
+
  const PORT = process.env.PORT || 5000; 
   
  const __filename = fileURLToPath(import.meta.url); 
