@@ -21,7 +21,7 @@ import express from "express";
      allowedHeaders: ["Content-Type", "Authorization"], 
  credentials: true // هذا مهم للسماح بإرسال الكوكيز 
    } 
- app.options("", cors(corsConfig))  
+ app.options("*", cors(corsConfig))  
  app.use( 
    cors(corsConfig) 
  ); 
