@@ -30,7 +30,7 @@ const HomePage = () => {
         console.log("Feed posts data:", data);
 
         if (data.error) {
-          showToast("Error", data.error, "error");
+          showToast("Errorr", data.error, "error");
         }
 
         if (Array.isArray(data)) {
