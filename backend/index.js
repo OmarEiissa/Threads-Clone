@@ -16,10 +16,9 @@ import express from "express";
   
  const corsConfig = { 
      origin: "*", // يمكن استبداله بعناوين محددة حسب الحاجة 
- credential: true,  
      methods: ["GET", "POST", "PUT", "DELETE"], 
      allowedHeaders: ["Content-Type", "Authorization"], 
- credentials: true // هذا مهم للسماح بإرسال الكوكيز 
+     credentials: true // هذا مهم للسماح بإرسال الكوكيز 
    } 
  app.options("*", cors(corsConfig))  
  app.use( 
