@@ -14,7 +14,6 @@ import express from "express";
  connectDB(); 
  const app = express(); 
   
- import cors from 'cors';
 
 // تكوين CORS
 const corsConfig = {  
